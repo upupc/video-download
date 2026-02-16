@@ -83,6 +83,7 @@ python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_
 | `subtitle_format` | string | No | Subtitle format: txt, srt, vtt, json (default: "txt") |
 | `download_subtitle` | boolean | No | Download video's built-in subtitles if available (default: false) |
 | `verbose` | boolean | No | Show detailed transcription logs (default: false) |
+| `overwrite_subtitle` | boolean | No | Overwrite existing subtitle files (default: true, set to false to skip if exists) |
 
 ## Output
 
@@ -157,6 +158,11 @@ python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_
 ### Show detailed transcription logs:
 ```bash
 python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_ID"],"output":"./downloads","verbose":true}'
+```
+
+### Skip transcription if subtitle already exists:
+```bash
+python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_ID"],"output":"./downloads","overwrite_subtitle":false}'
 ```
 
 ## Troubleshooting
