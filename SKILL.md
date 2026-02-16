@@ -47,7 +47,7 @@ This skill supports downloading from virtually any video website thanks to yt-dl
 - BBC iPlayer, ITV, Channel 4
 - ARD, ZDF, Arte
 
-For the complete list of 1800+ supported sites, see: [yt-dlp supported extractors](references/supportedsites.md)
+For the complete list of 1800+ supported sites, see: [yt-dlp supported extractors](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
 
 ## Prerequisites
 
@@ -81,6 +81,7 @@ python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_
 | `transcribe` | boolean | No | Whether to transcribe video to subtitle (default: true) |
 | `subtitle_format` | string | No | Subtitle format: txt, srt, vtt, json (default: "txt") |
 | `download_subtitle` | boolean | No | Download video's built-in subtitles if available (default: false) |
+| `verbose` | boolean | No | Show detailed transcription logs (default: false) |
 
 ## Output
 
@@ -150,6 +151,11 @@ python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_
 ### Download with custom Whisper model:
 ```bash
 python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_ID"],"output":"./downloads","model":"large"}'
+```
+
+### Show detailed transcription logs:
+```bash
+python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_ID"],"output":"./downloads","verbose":true}'
 ```
 
 ## Troubleshooting

@@ -18,10 +18,16 @@ def extract_audio(video_path: str) -> str:
     return audio_path
 
 
-def transcribe_audio(audio_path: str, model: Whisper) -> dict:
-    """使用Whisper转录音频"""
+def transcribe_audio(audio_path: str, model: Whisper, verbose: bool = False) -> dict:
+    """使用Whisper转录音频
 
-    result = model.transcribe(audio=audio_path, verbose=True)
+    Args:
+        audio_path: 音频文件路径
+        model: Whisper模型
+        verbose: 是否显示详细日志 (默认: False)
+    """
+
+    result = model.transcribe(audio=audio_path, verbose=verbose)
 
     return {
         "text": result["text"],
@@ -76,6 +82,7 @@ def download_videos(json_input: str) -> dict:
             - transcribe: 是否进行转录 (默认: True)
             - subtitle_format: 字幕格式，支持: txt, srt, vtt, json (默认: "txt")
             - download_subtitle: 是否下载视频自带字幕 (默认: False)
+            - verbose: 是否显示详细日志 (默认: False)
 
     Returns:
         结果字典
@@ -91,6 +98,7 @@ def download_videos(json_input: str) -> dict:
     transcribe = params.get("transcribe", True)  # 是否进行转录
     subtitle_format = params.get("subtitle_format", "txt")  # 字幕格式
     download_subtitle = params.get("download_subtitle", False)  # 是否下载视频自带字幕
+    verbose = params.get("verbose", False)  # 是否显示详细日志
 
     if not urls:
         return {"success": False, "message": "URL列表为空", "downloaded": [], "transcripts": []}
@@ -228,7 +236,7 @@ def download_videos(json_input: str) -> dict:
             audio_path = extract_audio(video_path)
             print(f"[{idx + 1}/{len(video_list)}] 正在转录: {video_title}")
 
-            transcript = transcribe_audio(audio_path,model)
+            transcript = transcribe_audio(audio_path, model, verbose)
             print()  # 换行
 
             # 保存字幕文件
@@ -271,11 +279,13 @@ if __name__ == "__main__":
         print("  transcribe: 是否转录 (默认: True)")
         print("  subtitle_format: 字幕格式 (默认: 'txt', 可选: txt/srt/vtt/json)")
         print("  download_subtitle: 是否下载视频自带字幕 (默认: False)")
+        print("  verbose: 是否显示详细日志 (默认: False)")
         print()
         print('示例1 - 下载并转录: python video_parser.py \'{"urls":["URL"],"output":"./downloads"}\'')
         print('示例2 - 只下载不转录: python video_parser.py \'{"urls":["URL"],"output":"./downloads","transcribe":false}\'')
         print('示例3 - 生成SRT字幕: python video_parser.py \'{"urls":["URL"],"output":"./downloads","subtitle_format":"srt"}\'')
         print('示例4 - 下载视频自带字幕: python video_parser.py \'{"urls":["URL"],"output":"./downloads","download_subtitle":true}\'')
+        print('示例5 - 显示详细日志: python video_parser.py \'{"urls":["URL"],"verbose":true}\'')
         sys.exit(1)
 
     json_input = ''.join(sys.argv[1:])
