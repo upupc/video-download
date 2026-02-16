@@ -48,6 +48,7 @@ This skill supports downloading from virtually any video website thanks to yt-dl
 - ARD, ZDF, Arte
 
 For the complete list of 1800+ supported sites, see: [yt-dlp supported extractors](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
+Local document about supported sites: references/supportedsites.md
 
 ## Prerequisites
 
