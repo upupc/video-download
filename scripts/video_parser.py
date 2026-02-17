@@ -124,7 +124,7 @@ def download_videos(json_input: str) -> dict:
         json_input: JSON字符串，支持以下参数:
             - urls: 视频URL列表 (必须)
             - output: 下载保存路径 (默认: "./downloads")
-            - model: Faster Whisper模型名称 (默认: "large-v3")
+            - model: Faster Whisper模型名称 (默认: "small")
             - transcribe: 是否进行转录 (默认: True)
             - subtitle_format: 字幕格式，支持: txt, srt, vtt, json (默认: "txt")
             - download_subtitle: 是否下载视频自带字幕 (默认: False)
@@ -140,7 +140,7 @@ def download_videos(json_input: str) -> dict:
 
     urls = params.get("urls", [])
     output_path = params.get("output", "./downloads")
-    model_name = params.get("model", "large-v3")
+    model_name = params.get("model", "small")
     transcribe = params.get("transcribe", True)  # 是否进行转录
     subtitle_format = params.get("subtitle_format", "txt")  # 字幕格式
     download_subtitle = params.get("download_subtitle", False)  # 是否下载视频自带字幕
@@ -337,7 +337,7 @@ if __name__ == "__main__":
         print("参数说明:")
         print("  urls: 视频URL列表 (必须)")
         print("  output: 下载保存路径 (默认: './downloads')")
-        print("  model: Faster Whisper模型 (默认: 'large-v3', 可选: tiny/base/small/medium/large/large-v2/large-v3/turbo)")
+        print("  model: Faster Whisper模型 (默认: 'small', 可选: tiny/base/small/medium/large/large-v2/large-v3/turbo)")
         print("  transcribe: 是否转录 (默认: True)")
         print("  subtitle_format: 字幕格式 (默认: 'txt', 可选: txt/srt/vtt/json)")
         print("  download_subtitle: 是否下载视频自带字幕 (默认: False)")

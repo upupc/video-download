@@ -55,7 +55,7 @@ Local document about supported sites: references/supportedsites.md
 Ensure the following Python packages are installed:
 - `yt-dlp` - For downloading videos from any supported site
 - `ffmpeg-python` - For audio extraction
-- `faster-whisper` - For speech-to-text transcription (faster and more memory-efficient than openai-whisper). **Note**: The first run will download models from HuggingFace (default: large-v3, ~3GB). A VPN is required for mainland China users.
+- `faster-whisper` - For speech-to-text transcription (faster and more memory-efficient than openai-whisper). **Note**: The first run will download models from HuggingFace (default: small, ~3GB). A VPN is required for mainland China users.
 - `tqdm` - For progress bar display during transcription
 
 Install via pip:
@@ -79,7 +79,7 @@ python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_
 |-----------|------|----------|-------------|
 | `urls` | array | Yes | List of video URLs from any supported website |
 | `output` | string | No | Output directory (default: "./downloads") |
-| `model` | string | No | Faster Whisper model size: tiny, base, small, medium, large, large-v2, large-v3, turbo (default: "large-v3") |
+| `model` | string | No | Faster Whisper model size: tiny, base, small, medium, large, large-v2, large-v3, turbo (default: "small") |
 | `transcribe` | boolean | No | Whether to transcribe video to subtitle (default: true) |
 | `subtitle_format` | string | No | Subtitle format: txt, srt, vtt, json (default: "txt") |
 | `download_subtitle` | boolean | No | Download video's built-in subtitles if available (default: false) |
@@ -163,6 +163,6 @@ python scripts/video_parser.py '{"urls":["https://www.youtube.com/watch?v=VIDEO_
 ## Troubleshooting
 
 - **ffmpeg not found**: Install ffmpeg via `brew install ffmpeg` (macOS) or your system's package manager
-- **Faster Whisper model download fails**: Models are downloaded from HuggingFace. Mainland China users need a VPN/proxy to download models. The default large-v3 model is ~3GB.
+- **Faster Whisper model download fails**: Models are downloaded from HuggingFace. Mainland China users need a VPN/proxy to download models. The default small model is ~75MB.
 - **Download fails**: Some videos may be geo-restricted, age-gated, or unavailable. Check the video URL and try again.
 - **Cookie/auth required**: Some sites need authentication. You can pass cookies via yt-dlp options if needed.
